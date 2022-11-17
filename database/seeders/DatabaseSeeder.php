@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ProductTypeSeeder::class,
             ClientSeeder::class,
             ProductSeeder::class,
+            BookingSeeder::class,
         ]);
     }
 }
