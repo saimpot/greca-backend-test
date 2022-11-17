@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProductFactory extends Factory
 {
-    private const CAPACITY = 15;
+    private const CAPACITY = 3;
     /**
      * Define the model's default state.
      *

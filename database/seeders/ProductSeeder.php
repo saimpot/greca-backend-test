@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 use Database\Factories\ProductFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
+    public const NUMBER_OF_PRODUCTS_TO_CREATE = 500;
     /**
      * Run the database seeds.
      *
@@ -15,6 +15,6 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        (new ProductFactory())->count(500)->create();
+        (new ProductFactory())->count(self::NUMBER_OF_PRODUCTS_TO_CREATE)->create();
     }
 }
