@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamp('booked_on');
+            $table->timestamp('booked_on')->useCurrent();
             $table->timestamps();
+
+            $table->unique(['client_id', 'product_id']);
         });
     }
 
