@@ -7,7 +7,6 @@ use App\Contracts\Booking\BookingRepositoryInterface;
 use App\Contracts\Booking\BookingServiceInterface;
 use App\Http\Requests\Api\Booking\StoreBookingRequest;
 use App\Models\Booking;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Illuminate\Pagination\Paginator;
 
@@ -24,6 +23,15 @@ class BookingService implements BookingServiceInterface
     public function getAllBookings(): Paginator
     {
         return $this->bookingRepository->all();
+    }
+
+    /**
+     * @param int $productId
+     * @return Booking|null
+     */
+    public function getBookingByProductId(int $productId): ?Booking
+    {
+        return $this->bookingRepository->find($productId);
     }
 
     /**
@@ -46,11 +54,15 @@ class BookingService implements BookingServiceInterface
     }
 
     /**
-     * @param Booking $booking
+     * @param Booking|null $booking
      * @return string
      */
-    public function determineBookingAvailability(Booking $booking): string
+    public function determineBookingAvailability(?Booking $booking): string
     {
+        if(is_null($booking)) {
+            return BookingConstants::AVAILABLE;
+        }
+
         if($this->bookingRepository->countProductsWithSameId($booking->product_id) >= $booking->product->capacity) {
             return BookingConstants::UNAVAILABLE;
         }

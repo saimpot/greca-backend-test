@@ -29,6 +29,15 @@ class BookingRepository implements BookingRepositoryInterface
     }
 
     /**
+     * @param int $productId
+     * @return Booking|null
+     */
+    public function find(int $productId): ?Booking
+    {
+        return $this->model->newModelQuery()->where('product_id', $productId)->first();
+    }
+
+    /**
      * @param array $attributes
      * @return Model
      */

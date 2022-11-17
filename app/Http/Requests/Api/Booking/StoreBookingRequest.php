@@ -2,10 +2,18 @@
 
 namespace App\Http\Requests\Api\Booking;
 
+use App\Contracts\Booking\BookingRepositoryInterface;
+use App\Contracts\Booking\BookingServiceInterface;
+use App\Rules\Available;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreBookingRequest extends FormRequest
 {
+    public function __construct(private BookingRepositoryInterface $bookingRepository, private BookingServiceInterface $bookingService)
+    {
+        parent::__construct();
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -14,6 +22,13 @@ class StoreBookingRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    public function prepareForValidation(): void
+    {
+        $this->merge([
+            'availability' => $this->bookingService->determineBookingAvailability($this->bookingRepository->find(request()?->input(['product_id']))),
+        ]);
     }
 
     /**
@@ -26,7 +41,8 @@ class StoreBookingRequest extends FormRequest
         return [
             'client_id' => 'required|integer|exists:clients,id',
             'product_id' => 'required|integer|exists:products,id',
-            'booked_on' => 'date',
+            'booked_on' => 'sometimes|required|date',
+            'availability' => new Available,
         ];
     }
 }
