@@ -4,7 +4,7 @@ namespace App\Constants;
 
 class BookingConstants
 {
-    // Booking model\
+    // Booking model
     public const UNAVAILABLE = 'Unavailable';
     public const AVAILABLE = 'Available';
 
