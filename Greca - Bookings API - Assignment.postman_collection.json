@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "8fcec842-b4d6-471a-87d8-c8ec1c70bcbd",
+		"name": "Greca - Bookings API - Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2630223"
+	},
+	"item": [
+		{
+			"name": "Create Booking (Greca)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"client_id\": 7,\n    \"product_id\": 1\n}"
+				},
+				"url": {
+					"raw": "{{url}}/bookings/store",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"bookings",
+						"store"
+					],
+					"query": [
+						{
+							"key": "booked_on",
+							"value": "1668688662",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Bookings (Greca)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"client_id\": 1,\n    \"product_id\": 1\n}"
+				},
+				"url": {
+					"raw": "{{url}}/bookings",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"bookings"
+					],
+					"query": [
+						{
+							"key": "booked_on",
+							"value": "1668688662",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
