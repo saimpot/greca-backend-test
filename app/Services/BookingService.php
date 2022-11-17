@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Constants\BookingConstants;
 use App\Contracts\Booking\BookingRepositoryInterface;
 use App\Contracts\Booking\BookingServiceInterface;
 use App\Http\Requests\Api\Booking\StoreBookingRequest;
@@ -51,9 +52,9 @@ class BookingService implements BookingServiceInterface
     public function determineBookingAvailability(Booking $booking): string
     {
         if($this->bookingRepository->countProductsWithSameId($booking->product_id) >= $booking->product->capacity) {
-            return Booking::UNAVAILABLE;
+            return BookingConstants::UNAVAILABLE;
         }
 
-        return Booking::AVAILABLE;
+        return BookingConstants::AVAILABLE;
     }
 }

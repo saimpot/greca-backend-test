@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Constants\BookingConstants;
 use Database\Factories\ClientFactory;
 use Illuminate\Database\Seeder;
 
 class ClientSeeder extends Seeder
 {
-    public const NUMBER_OF_CLIENTS_TO_CREATE = 100;
     /**
      * Run the database seeds.
      *
@@ -15,6 +15,6 @@ class ClientSeeder extends Seeder
      */
     public function run(): void
     {
-        (new ClientFactory)->count(self::NUMBER_OF_CLIENTS_TO_CREATE)->create();
+        (new ClientFactory)->count(BookingConstants::NUMBER_OF_CLIENTS_TO_CREATE)->create();
     }
 }

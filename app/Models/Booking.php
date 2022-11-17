@@ -21,9 +21,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Booking extends Model
 {
-    public const UNAVAILABLE = 'Unavailable';
-    public const AVAILABLE = 'Available';
-
     use HasFactory;
 
     /**
